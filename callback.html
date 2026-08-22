@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tesla OAuth Callback</title>
+<style>
+  body { font-family: monospace; background: #111; color: #eee; padding: 2rem; }
+  textarea { width: 100%; height: 6rem; font-family: monospace; font-size: 14px; }
+  .label { color: #888; margin-top: 1rem; }
+</style>
+</head>
+<body>
+<h2>Tesla OAuth redirect</h2>
+<p>This page doesn't send your data anywhere — everything below is read directly out of the
+   URL bar by your own browser and shown to you to copy manually.</p>
+
+<div class="label">Authorization code (copy this):</div>
+<textarea id="code" readonly></textarea>
+
+<div class="label">State (should match what you sent, if you used one):</div>
+<textarea id="state" readonly></textarea>
+
+<div class="label">Full query string (for troubleshooting):</div>
+<textarea id="raw" readonly></textarea>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById('code').value  = params.get('code')  || '(none found)';
+  document.getElementById('state').value = params.get('state') || '(none)';
+  document.getElementById('raw').value   = window.location.search || '(empty)';
+</script>
+</body>
+</html>
